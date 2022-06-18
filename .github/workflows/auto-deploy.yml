@@ -18,7 +18,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: {context}/DontTouch.txt
+        file: ./DontTouch.txt
         push: true
         tags: |
           portfolio-backend:latest
