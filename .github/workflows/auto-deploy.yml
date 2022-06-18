@@ -15,7 +15,7 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ github.token }}
-        dockerfile: Dockerfile
+        dockerfile: Dockerfile.ci
 
     - name: Deploy to Web
       uses: azure/webapps-deploy@v2
