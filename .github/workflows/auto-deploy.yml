@@ -4,7 +4,7 @@ name: AutoDeploy
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
 
     - name: Build & push Docker image
@@ -15,7 +15,6 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ github.token }}
-        directory: ./
         dockerfile: Dockerfile
 
     - name: Deploy to Web
