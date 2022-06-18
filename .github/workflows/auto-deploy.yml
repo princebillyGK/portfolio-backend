@@ -6,13 +6,14 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Publish Image
-      uses: matootie/github-docker@v3.1.0
-      with:
-        accessToken: ${{ github.token }}
-        tag: |
-          latest
-          ${{ github.sha }}
+
+    - name: Publish Docker image
+        uses: flownative/action-docker-build@v1
+        with:
+          tag_ref: ${{ github.ref }}
+          image_name: princebillygk/my-portfolio-backend
+          image_tag: ${{ github.sha }}
+          registry_password: ${{ github.token }}
 
     - name: Deploy to Web
       uses: azure/webapps-deploy@v2
