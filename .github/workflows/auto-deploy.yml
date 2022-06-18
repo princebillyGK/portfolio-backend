@@ -1,0 +1,22 @@
+on: [push]
+
+name: AutoDeploy
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Publish Image
+      uses: matootie/github-docker@v3.1.0
+      with:
+        accessToken: ${{ github.token }}
+        tag: |
+          latest
+          ${{ github.sha }}
+
+    - name: Deploy to Web
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'princebillygk'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'ghcr.io/princebillygk/my-portfolio-backend:${{ github.sha }}'
