@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - uses: actions/checkout@v2
+
     - name: Login to Github container registry
       uses: docker/login-action@v2
       with:
@@ -18,7 +20,6 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: ./DontTouch.txt
         push: true
         tags: |
           portfolio-backend:latest
