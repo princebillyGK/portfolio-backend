@@ -22,8 +22,8 @@ jobs:
         context: .
         push: true
         tags: |
-          princebillygk/portfolio-backend:latest
-          princebillygk/portfolio-backend:${{ github.sha }}
+          ghcr.io/princebillygk/portfolio-backend:latest
+          ghcr.io/princebillygk/portfolio-backend:${{ github.sha }}
 
 
     - name: Deploy to Web
