@@ -4,17 +4,18 @@ name: AutoDeploy
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
 
-    - name: Publish to github package
-      uses: elgohr/Publish-Docker-Github-Action@v4
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        name: princebillygk/portfolio-backend
-        username: ${{ github.repository_owner }}
-        password: ${{ github.token }}
+        image: portfolio-backend
         tags: ${{ github.sha }}, latest
         registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ github.token }}
+        dockerfile: Dockerfile.ci
 
     - name: Deploy to Web
       uses: azure/webapps-deploy@v2
