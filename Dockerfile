@@ -10,7 +10,7 @@ COPY . .
 RUN go build -v -o /usr/local/bin/ ./...
 
 
-EXPOSE 8080
+EXPOSE 80
 CMD ["api"]-
 
 # Github package requirement
