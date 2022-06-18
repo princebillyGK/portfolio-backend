@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	"princebillygk.portfolio.io/pkg/util"
 )
 
 func main() {
@@ -10,5 +12,5 @@ func main() {
 		w.Write([]byte("Hello World"))
 	})
 
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe("0.0.0.0:"+util.Env("API_PORT", "80"), nil)
 }
