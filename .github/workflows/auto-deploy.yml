@@ -7,22 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Login to Github container registry
-      uses: docker/login-action@v2
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
       with:
+        image: princebillygk/portfolio-backend
+        tags: ${{ github.sha }}, latest
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ github.token }}
-
-    - name: Build and push to Github package
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        push: true
-        tags: |
-          princebillygk/portfolio-backend:latest
-          princebillygk/portfolio-backend:${{ github.sha }}
-
+        dockerfile: Dockerfile
 
     - name: Deploy to Web
       uses: azure/webapps-deploy@v2
