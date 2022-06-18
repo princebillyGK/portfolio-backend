@@ -18,9 +18,10 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        platforms: linux/amd64,linux/arm64
         push: true
-        tags: princebillygk/portfolio-backend:${{ github.sha }}
+        tags: |
+          princebillygk/portfolio-backend:latest
+          princebillygk/portfolio-backend:${{ github.sha }}
 
 
     - name: Deploy to Web
