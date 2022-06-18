@@ -9,8 +9,10 @@ RUN go mod download && go mod verify
 COPY . .
 RUN go build -v -o /usr/local/bin/ ./...
 
+
+EXPOSE 8080
 CMD ["api"]-
 
 # Github package requirement
-LABEL org.opencontainers.image.source https://github.com/princebillyGK/my-portfolio-backend
+# LABEL org.opencontainers.image.source https://github.com/princebillyGK/my-portfolio-backend
 
