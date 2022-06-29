@@ -3,14 +3,13 @@ FROM golang:1.18
 WORKDIR /usr/src/app
 
 # pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
-COPY go.mod ./
-COPY go.sum ./
+ADD go.mod ./
 RUN go mod download
 
-COPY */*.go .
+ADD . .
 RUN go build -v -o /usr/local/bin/ ./...
 
-COPY frontend /usr/frontend
+ADD frontend /usr/frontend
 
 EXPOSE 80
 CMD ["api"]-
