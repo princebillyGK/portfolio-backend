@@ -19,8 +19,12 @@ func main() {
 	}
 	defer dbClose()
 
+	// Setuping up router
 	r := router.New()
 	router.SetupPortfolio(r, controller.NewPortfolio(mc))
+
+	// Serving static files
+	r.Handle("/*", http.FileServer(http.Dir(conf.StaticAssetsPath)))
 
 	log.Fatal(http.ListenAndServe("0.0.0.0:"+util.Env("API_PORT", "80"), r))
 }

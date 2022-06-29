@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
 	"log"
 	"net/http"
 
@@ -26,6 +25,7 @@ func (p Portfolio) Get(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	s, _ := json.MarshalIndent(data, "", "\t")
-	w.Write([]byte(s))
+	// s, _ := json.MarshalIndent(data, "", "\t")
+	w.WriteHeader(http.StatusOK)
+	conf.Templates["homepage"].Execute(w, data)
 }
