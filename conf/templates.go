@@ -7,5 +7,5 @@ import (
 var templatePath = "../../frontend/templates/"
 
 var Templates = map[string]*template.Template{
-	"homepage": template.Must(template.ParseFiles(templatePath + "/index.tmpl")),
+	"homepage": template.Must(template.ParseFiles(templatePath + "index.tmpl")),
 }
