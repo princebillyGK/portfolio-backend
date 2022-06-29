@@ -7,11 +7,11 @@ COPY go.mod ./
 RUN go mod download && go mod verify
 
 COPY . .
-RUN go build -v -o /usr/local/bin/ ./...
-RUN mv ./frontend /usr/frontend
+# RUN go build -v -o /usr/local/bin/ ./...
+RUN go build -v -o ./cmd/api/api ./cmd/api/main.go
 
 EXPOSE 80
-CMD ["api"]-
+CMD ["./cmd/api/api"]-
 
 # Github package requirement
 # LABEL org.opencontainers.image.source https://github.com/princebillyGK/my-portfolio-backend
