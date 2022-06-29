@@ -2,9 +2,12 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
+	"net/http"
 
 	"princebillygk.portfolio.io/conf"
+	"princebillygk.portfolio.io/pkg/util"
 	"princebillygk.portfolio.io/repository"
 )
 
@@ -16,13 +19,16 @@ func main() {
 	}
 	defer dbClose()
 
-	portfolioRepo := repository.NewPortfolio(mc)
-	portfolioRepo.GetById(ctx, conf.ResumeId)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		portfolioRepo := repository.NewPortfolio(mc)
+		data, err := portfolioRepo.GetById(ctx, conf.ResumeId)
+		if err != nil {
+			log.Fatalln(err)
+		}
+		s, _ := json.MarshalIndent(data, "", "\t")
+		w.Write([]byte(s))
+	})
 
-	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-	// 	w.WriteHeader(http.StatusOK)
-	// 	w.Write([]byte("Hello World"))
-	// })
-
-	// http.ListenAndServe("0.0.0.0:"+util.Env("API_PORT", "80"), nil)
+	log.Fatal(http.ListenAndServe("0.0.0.0:"+util.Env("API_PORT", "80"), nil))
 }

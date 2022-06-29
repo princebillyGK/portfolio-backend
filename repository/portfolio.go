@@ -2,12 +2,11 @@ package repository
 
 import (
 	"context"
-	"encoding/json"
-	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"princebillygk.portfolio.io/model"
 )
 
 type Portfolio struct {
@@ -18,27 +17,20 @@ func NewPortfolio(c *mongo.Client) *Portfolio {
 	return &Portfolio{collection: c.Database("portfolio").Collection("resume")}
 }
 
-func (r Portfolio) GetById(ctx context.Context, id string) error {
-	var result bson.M
-
+func (r Portfolio) GetById(ctx context.Context, id string) (*model.Portfolio, error) {
+	var result model.Portfolio
 	oid, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	err = r.collection.FindOne(ctx, bson.D{{"_id", oid}}).Decode(&result)
 	if err == mongo.ErrNoDocuments {
-		return err
+		return nil, err
 	}
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	jsonData, err := json.MarshalIndent(result, "", "    ")
-	if err != nil {
-		return err
-	}
-
-	fmt.Printf("%s\n", jsonData)
-	return nil
+	return &result, nil
 }
