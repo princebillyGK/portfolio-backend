@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"log"
 	"net/http"
 
 	"princebillygk.portfolio.io/conf"
+	"princebillygk.portfolio.io/controller"
 	"princebillygk.portfolio.io/pkg/util"
-	"princebillygk.portfolio.io/repository"
+	"princebillygk.portfolio.io/router"
 )
 
 func main() {
@@ -19,16 +19,8 @@ func main() {
 	}
 	defer dbClose()
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusOK)
-		portfolioRepo := repository.NewPortfolio(mc)
-		data, err := portfolioRepo.GetById(ctx, conf.ResumeId)
-		if err != nil {
-			log.Fatalln(err)
-		}
-		s, _ := json.MarshalIndent(data, "", "\t")
-		w.Write([]byte(s))
-	})
+	r := router.New()
+	router.SetupPortfolio(r, controller.NewPortfolio(mc))
 
-	log.Fatal(http.ListenAndServe("0.0.0.0:"+util.Env("API_PORT", "80"), nil))
+	log.Fatal(http.ListenAndServe("0.0.0.0:"+util.Env("API_PORT", "80"), r))
 }

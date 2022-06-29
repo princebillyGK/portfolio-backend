@@ -3,6 +3,7 @@ module princebillygk.portfolio.io
 go 1.18
 
 require (
+	github.com/go-chi/chi/v5 v5.0.7 // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect

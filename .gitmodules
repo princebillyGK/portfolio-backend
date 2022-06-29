@@ -1,0 +1,3 @@
+[submodule "princebillyGK.github.io"]
+	path = frontend
+	url = git@github.com:princebillyGK/princebillyGK.github.io.git
