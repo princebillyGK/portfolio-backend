@@ -7,12 +7,12 @@ ADD go.mod ./
 RUN go mod download
 
 ADD . .
-# RUN go build -v -o /usr/local/bin/ ./...
+RUN go build -v -o /usr/local/bin/ ./...
 
-# ADD frontend/ /usr/frontend/
+ADD frontend/ /usr/frontend/
 
 EXPOSE 80
-CMD ["go run cmd/api/main.go"]-
+CMD ["api"]-
 
 # Github package requirement
 # LABEL org.opencontainers.image.source https://github.com/princebillyGK/my-portfolio-backend
