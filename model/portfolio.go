@@ -12,7 +12,7 @@ type Portfolio struct {
 
 	WorkExperiences []Experience            `json:"work_experiences" bson:"work_experiences"`
 	Projects        []Project               `json:"projects" bson:"projects"`
-	Education       []Education             `json:"education" bson:"education"`
+	Educations      []Education             `json:"education" bson:"education"`
 	Skills          []SkillCollection       `json:"skills" bson:"skills"`
 	Certificates    []CertificateCollection `json:"certificates" bson:"certificates"`
 
