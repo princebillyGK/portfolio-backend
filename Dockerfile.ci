@@ -8,7 +8,7 @@ RUN go mod download && go mod verify
 
 COPY . .
 RUN go build -v -o /usr/local/bin/ ./...
-COPY ./frontend/ ./usr/frontend/
+COPY ./frontend/ /usr/frontend/
 
 EXPOSE 80
 CMD ["api"]-
