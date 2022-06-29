@@ -9,7 +9,7 @@ RUN go mod download
 ADD . .
 RUN go build -v -o /usr/local/bin/ ./...
 
-ADD frontend /usr/frontend
+ADD frontend/ /usr/frontend/
 
 EXPOSE 80
 CMD ["api"]-
