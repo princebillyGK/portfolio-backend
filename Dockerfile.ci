@@ -11,7 +11,7 @@ RUN go build -v -o /usr/local/bin/ ./...
 COPY frontend/ /usr/frontend/
 
 EXPOSE 80
-CMD ["app"]
+CMD ["api"]
 
 # Github package requirement
 # LABEL org.opencontainers.image.source https://github.com/princebillyGK/my-portfolio-backend
