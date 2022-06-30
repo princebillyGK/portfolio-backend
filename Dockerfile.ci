@@ -8,7 +8,7 @@ RUN go mod download && go mod verify
 
 COPY . .
 RUN go build -v -o /usr/local/bin ./...
-RUN mv frontend ~/portfolio/frontend
+RUN mv frontend /usr/frontend
 
 EXPOSE 80
 
