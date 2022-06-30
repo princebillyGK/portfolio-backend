@@ -1,9 +1,12 @@
 package conf
 
-import "text/template"
+import (
+	"path/filepath"
+	"text/template"
+)
 
-// var templatePath, _ = filepath.Abs("../../frontend/templates")
+var templatePath, _ = filepath.Abs("../../frontend/templates")
 
 var Templates = map[string]*template.Template{
-	// "homepage": template.Must(template.ParseFiles(templatePath + "/index.tmpl")),
+	"homepage": template.Must(template.ParseFiles(templatePath + "/index.tmpl")),
 }
