@@ -13,6 +13,6 @@ RUN mv frontend ~/portfolio/frontend
 EXPOSE 80
 CMD ["~/.portfolio/cmd/bin/api"]
 
-Github package requirement
+/* Github package requirement */
 LABEL org.opencontainers.image.source https://github.com/princebillyGK/my-portfolio-backend
 
