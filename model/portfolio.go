@@ -1,11 +1,12 @@
 package model
 
 type Portfolio struct {
-	ID                string `json:"_id" bson:"_id"`
-	Slug              string `json:"slug" bson:"slug"`
-	FirstName         string `json:"first_name" bson:"first_name"`
-	LastName          string `json:"last_name" bson:"last_name"`
-	ProfessionalTitle string `json:"professional_title" bson:"professional_title"`
+	ID                string   `json:"_id" bson:"_id"`
+	Slug              string   `json:"slug" bson:"slug"`
+	FirstName         string   `json:"first_name" bson:"first_name"`
+	LastName          string   `json:"last_name" bson:"last_name"`
+	ProfessionalTitle string   `json:"professional_title" bson:"professional_title"`
+	Contacts          Contacts `json:"contacts" bson:"contacts"`
 
 	Profiles      []Profile      `json:"profiles" bson:"profiles"`
 	Contributions []Contribution `json:"contributions" bson:"contributions"`
@@ -19,6 +20,13 @@ type Portfolio struct {
 	Interests []string `json:"interests" bson:"interests"`
 
 	Meta Meta `json:"meta" bson:"meta"`
+}
+
+type Contacts struct {
+	Linkedin string `json:"linkedin_url" bson:"linkedin_url"`
+	Telegram string `json:"telegram" bson:"telegram"`
+	Whatsapp string `json:"whatsapp" bson:"whatsapp"`
+	Email    string `json:"email" bson:"email"`
 }
 
 type Meta struct {
@@ -86,6 +94,10 @@ type Project struct {
 	Logo        string `json:"logo" bson:"logo"`
 	Intent      string `json:"intent" bson:"intent"`
 	AppURL      string `json:"app_url,omitempty" bson:"app_url"`
+	StartYear   int    `json:"start_year" bson:"start_year"`
+	StartMonth  string `json:"start_month" bson:"start_month"`
+	EndYear     int    `json:"end_year" bson:"end_year"`
+	EndMonth    string `json:"end_month" bson:"end_month"`
 
 	BriefDescription string          `json:"brief_description" bson:"brief_description"`
 	AppliedSkills    []AppliedSkills `json:"applied_skills" bson:"applied_skills"`
