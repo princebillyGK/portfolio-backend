@@ -12,7 +12,7 @@ run:
 deploy-ghpage: 
 	cd frontend && npm run build
 	cd ./cmd/ghpage && go run main.go
-	cd ./frontend/ && gulp ghpage
+	cd ./frontend/ && gulp ghpage &&  git commit -am "deployment" && git push ghpage gotmpl:main
 	
 	
 docker-build:
