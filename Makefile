@@ -12,8 +12,7 @@ run:
 deploy-ghpage: 
 	cd frontend && npm run build
 	cd ./cmd/ghpage && go run main.go
-	cd ./frontend/ && gulp ghpage &&  git commit -am "deployment" && git push ghpage gotmpl:main
-	
+	cd ./frontend/ && gulp ghpage && git commit -am "update gh-pages" && git push origin gotmpl:main
 	
 docker-build:
 	docker build -f Dockerfile.ci -t ghcr.io/princebillygk/portfolio-backend:latest . 
