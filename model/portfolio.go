@@ -94,6 +94,7 @@ type Project struct {
 	Logo        string `json:"logo" bson:"logo"`
 	Intent      string `json:"intent" bson:"intent"`
 	AppURL      string `json:"app_url,omitempty" bson:"app_url"`
+	SrcURL      string `json:"src_url,omitempty" bson:"src_url"`
 	StartYear   int    `json:"start_year" bson:"start_year"`
 	StartMonth  string `json:"start_month" bson:"start_month"`
 	EndYear     int    `json:"end_year" bson:"end_year"`
